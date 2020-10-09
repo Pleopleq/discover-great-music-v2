@@ -1,2 +1,2 @@
 import "./main.css";
-alert("poop");
+console.log("sdf");
