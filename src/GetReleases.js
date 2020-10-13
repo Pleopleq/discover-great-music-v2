@@ -1,5 +1,6 @@
 export async function GetReleases() {
-  const APIURL = "https://api.discogs.com/database/search?q=Nirvana";
+  const randomId = Math.floor(Math.random() * 100000);
+  const APIURL = `https://api.discogs.com/artists/${randomId}/releases`;
   var myInit = {
     method: "GET",
     headers: {

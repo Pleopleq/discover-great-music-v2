@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   releasesButton.addEventListener("click", async function () {
     let releases = await GetReleases();
-    console.log(releases);
     ShowReleases(releases);
   });
 });
