@@ -1,7 +1,7 @@
 export async function GetReleases() {
   const randomId = Math.floor(Math.random() * 100000);
   const APIURL = `https://api.discogs.com/artists/${randomId}/releases`;
-  var myInit = {
+  const myInit = {
     method: "GET",
     headers: {
       "Access-Control-Allow-Origin": "*",
@@ -14,10 +14,7 @@ export async function GetReleases() {
     },
   };
 
-  let bandReleases = fetch(APIURL, myInit)
-    .then((response) => response.json())
-    .catch(function (error) {
-      console.error(error);
-    });
+  let response = await fetch(APIURL, myInit);
+  let bandReleases = await response.json();
   return bandReleases;
 }

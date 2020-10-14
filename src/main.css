@@ -8,4 +8,8 @@ body {
 
 .releases {
   background: whitesmoke;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 0.6fr);
+  overflow: auto;
 }
