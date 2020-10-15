@@ -1,6 +1,8 @@
 import discogsImage from "./assets/discogs.png";
 import { GetDetails } from "./GetDetails";
 
+import { Modal } from "./Modal";
+
 export function Album(props) {
   const element = document.createElement("article");
   element.classList = "releases-album";
@@ -17,10 +19,11 @@ export function Album(props) {
   </button>
   `;
 
-  element.children[4].addEventListener(
-    "click",
-    GetDetails.bind(this, props.resource_url)
-  );
+  element.children[4].addEventListener("click", async function () {
+    let details = await GetDetails.call(this, props.resource_url);
+    console.log(details);
+    Modal.call(this, details);
+  });
 
   return element;
 }

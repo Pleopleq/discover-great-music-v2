@@ -13,3 +13,24 @@ body {
   grid-template-rows: repeat(3, 0.6fr);
   overflow: auto;
 }
+
+.backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.modal {
+  position: fixed;
+  z-index: 200;
+  top: 10%;
+  left: 40%;
+  width: 30%;
+  background: white;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+  padding: 1rem;
+}
