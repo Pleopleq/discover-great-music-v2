@@ -4,12 +4,11 @@ function closeModal(backdrop) {
   }
 }
 
-export function Modal(details) {
+export function Modal(details, imageCover) {
   const backdrop = document.createElement("div");
   const modal = document.createElement("div");
   backdrop.classList.add("backdrop");
   modal.classList.add("modal");
-
   //TRACKLIST FORMAT
   const tracklist = details.tracklist.map((track) => track);
   const formatedTrackList = tracklist.map((track) => {
@@ -22,14 +21,21 @@ export function Modal(details) {
   let genre = details.genres.map((genre) => genre);
   let genreString = genre.join(", ");
 
-  //STYLE FORMAT
-  let styles = details.styles.map((style) => style);
-  let stylesString = styles.join(", ");
+  //STYLES FORMAT
+  let styles;
+  let stylesString;
+  if (details.styles != null) {
+    styles = details.styles.map((style) => style);
+    stylesString = styles.join(", ");
+  } else {
+    styles = "Not defined";
+  }
 
   modal.innerHTML = `
     <h1>${details.artists.map((artist) => artist.name)}</h1>
+    <img src="${imageCover}"/>
     <p>Genre: ${genreString}</p>
-    <p>Styles: ${stylesString}</p>
+    <p>Styles: ${stylesString === undefined ? styles : stylesString}</p>
     <p>${details.year}</>
     <h2>Tracklist</h2>
     <ul>
