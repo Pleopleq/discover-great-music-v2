@@ -18,6 +18,14 @@ export function Modal(details, imageCover) {
     return `<li>${track.title} - ${formattedDuration}</li>`;
   });
 
+  if (formattedTrackList.length > 14) {
+    const trackListLimit = formattedTrackList.length;
+    formattedTrackList.splice(14, trackListLimit);
+    formattedTrackList.push(
+      `<a href='${details.uri}' target="_blank">Click here to watch the entire list at Discogs.com</a>`
+    );
+  }
+
   //YOUTUBE VIDEOS FORMAT
   let formattedVideos;
   if (details.videos != null) {
@@ -50,11 +58,11 @@ export function Modal(details, imageCover) {
     <img src="${imageCover}"/>
     <p>Genre: ${genreString}</p>
     <p>Styles: ${stylesString === undefined ? styles : stylesString}</p>
-    <p>${details.year}</>
+    <p>${details.year === 0 ? "Unknown year" : details.year}</>
     <h2>Tracklist</h2>
-    <ul>
+    <ol>
         ${formattedTrackList.join(" ")}
-    </ul>
+    </ol>
     <ul>
     ${formattedVideos === undefined ? "" : formattedVideos.join(" ")}
     </ul>
@@ -63,5 +71,10 @@ export function Modal(details, imageCover) {
   backdrop.appendChild(modal);
   document.body.append(backdrop);
 
-  backdrop.addEventListener("click", closeModal.bind(this, backdrop));
+  backdrop.addEventListener("click", function (event) {
+    const clickedElement = modal.contains(event.target);
+    if (!clickedElement) {
+      closeModal(backdrop);
+    }
+  });
 }

@@ -28,9 +28,9 @@ body {
 .modal {
   position: fixed;
   z-index: 200;
-  top: 10%;
-  left: 35%;
-  width: 30%;
+  top: 5%;
+  left: 32%;
+  width: 40%;
   background: white;
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
   padding: 1rem;
