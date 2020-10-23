@@ -10,10 +10,12 @@ export function Album(props) {
   const imageFormatted = props.thumb.length == 0 ? defaultImage : props.thumb;
 
   element.innerHTML = `
-  <h2>${JSON.stringify(props.artist)} - ${JSON.stringify(props.title)}</h2>
-  <img src="${imageFormatted}" />
-  <p>${yearFormatted}</p>
-  <button class="releases-details">
+  <h2 class="releases-album__title">${JSON.stringify(
+    props.artist
+  )} - ${JSON.stringify(props.title)}</h2>
+  <img class="releases-album__cover" src="${imageFormatted}" />
+  <p class="releases-album__year">${yearFormatted}</p>
+  <button class="releases-album__details">
     Get more details
   </button>
   `;

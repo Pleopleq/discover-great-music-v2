@@ -54,16 +54,20 @@ export function Modal(details, imageCover) {
   }
 
   modal.innerHTML = `
-    <h1>${artitsString} - ${details.title}</h1>
-    <img src="${imageCover}"/>
-    <p>Genre: ${genreString}</p>
-    <p>Styles: ${stylesString === undefined ? styles : stylesString}</p>
-    <p>${details.year === 0 ? "Unknown year" : details.year}</>
-    <h2>Tracklist</h2>
-    <ol>
+    <h1 class="releases-album__artist">${artitsString} - ${details.title}</h1>
+    <img class="releases-album__cover" src="${imageCover}"/>
+    <p class="releases-album__genre">Genre: ${genreString}</p>
+    <p class="releases-album__styles">Styles: ${
+      stylesString === undefined ? styles : stylesString
+    }</p>
+    <p class="releases-album__year">${
+      details.year === 0 ? "Unknown year" : details.year
+    }</>
+    <h2 class="releases-album__tracklist">Tracklist</h2>
+    <ol class="releases-album__tracks">
         ${formattedTrackList.join(" ")}
     </ol>
-    <ul>
+    <ul class="releases-album__videos">
     ${formattedVideos === undefined ? "" : formattedVideos.join(" ")}
     </ul>
   `;

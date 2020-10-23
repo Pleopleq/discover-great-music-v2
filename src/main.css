@@ -1,18 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background: purple;
+  background: dodgerblue;
   font-family: sans-serif;
 }
 
 .input-container {
   background: white;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 1rem;
+  margin-bottom: 12px;
+}
+
+.input-container__description {
+  margin: 1rem 1rem 1rem 0;
+}
+
+.input-container__getcontent {
+  background: rgb(120, 134, 156);
+  font-weight: 700;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
 }
 
 .releases {
-  background: whitesmoke;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 0.6fr);
   overflow: auto;
+  gap: 1em;
+  margin: 1rem;
+}
+
+.releases-album {
+  background: honeydew;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.releases-album__title {
+  margin: 0.5rem;
+  text-align: center;
+}
+
+.releases-album__cover {
+  margin: 0 auto;
+}
+
+.releases-album__year {
+  margin: 0 auto;
+  font-weight: 700;
+  padding: 1rem;
+}
+
+.releases-album__details {
+  justify-self: center;
+  margin: 0 auto;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: none;
+  background: lightblue;
 }
 
 .backdrop {
