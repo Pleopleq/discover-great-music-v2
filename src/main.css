@@ -113,7 +113,12 @@ body {
 }
 
 .details-container {
-  margin: 1rem;
+  margin: 0.8rem;
+  font-weight: 700;
+}
+
+.details-container > * {
+  margin-bottom: 12px;
 }
 
 .details-tracklist {
@@ -132,5 +137,6 @@ body {
 .alert {
   background: #fffa9f;
   font-size: 1.5rem;
+  margin: 1rem;
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
