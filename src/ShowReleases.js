@@ -10,7 +10,7 @@ export function ShowReleases(props) {
 
   releases.forEach(function (album) {
     const elementAlbum = Album(album);
-
+    elementAlbum.classList.add("fade-in");
     releasesFragment.appendChild(elementAlbum);
   });
   uiReleases.appendChild(releasesFragment);

@@ -9,6 +9,7 @@ export function Modal(details, imageCover) {
   const modal = document.createElement("div");
   backdrop.classList.add("backdrop");
   modal.classList.add("modal");
+  modal.classList.add("flip-in-hor-bottom");
 
   //TRACKLIST FORMAT
   const tracklist = details.tracklist.map((track) => track);
@@ -80,7 +81,10 @@ export function Modal(details, imageCover) {
   backdrop.addEventListener("click", function (event) {
     const clickedElement = modal.contains(event.target);
     if (!clickedElement) {
-      closeModal(backdrop);
+      setTimeout(() => {
+        closeModal(backdrop);
+      }, 400);
+      modal.classList.add("slide-out-bck-center");
     }
   });
 }

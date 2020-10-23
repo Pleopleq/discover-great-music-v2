@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   releasesButton.addEventListener("click", async function () {
     const alertRemove = releasesContainer.previousSibling;
 
-    if (alertRemove.className === "alert") {
+    if (alertRemove.className === "alert bounce-top") {
       inputContainer.nextElementSibling.remove();
     }
 
