@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-size: 12px;
 }
 
 /*********************/
@@ -35,9 +36,8 @@ body {
 
 .releases {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-template-rows: repeat(3, 0.6fr);
-  overflow: auto;
   gap: 1em;
   margin: 1rem;
 }
@@ -48,7 +48,7 @@ body {
   flex-direction: column;
   justify-content: space-around;
   border-radius: 6px;
-  padding: 12px;
+  padding: 1rem;
 }
 
 .releases-album__title {
@@ -96,8 +96,8 @@ body {
   justify-content: space-around;
   z-index: 200;
   top: 1%;
-  left: 32%;
-  width: 40%;
+  left: 20%;
+  width: 50%;
   background: white;
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
   padding: 1rem;
@@ -132,6 +132,33 @@ body {
 .details-videos {
   margin: 1.25rem 0 1.25rem 0;
   list-style-type: none;
+}
+
+@media (min-width: 600px) {
+  .releases {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 0.6fr);
+    transition: all 1s ease;
+  }
+  .modal {
+    width: 40%;
+    left: 32%;
+  }
+}
+
+@media (min-width: 1200px) {
+  * {
+    font-size: 1.025em;
+  }
+  .releases {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 0.6fr);
+    transition: all 1s ease;
+  }
+  .modal {
+    width: 45%;
+    left: 27%;
+  }
 }
 
 /***************/
