@@ -4,15 +4,8 @@ function closeModal(backdrop) {
   }
 }
 
-export function Modal(details, imageCover) {
-  const backdrop = document.createElement("div");
-  const modal = document.createElement("div");
-  backdrop.classList.add("backdrop");
-  modal.classList.add("modal");
-  modal.classList.add("flip-in-hor-bottom");
-
-  //TRACKLIST FORMAT
-  const tracklist = details.tracklist.map((track) => track);
+function trackListFormatter(props) {
+  const tracklist = props.map((track) => track);
   const formattedTrackList = tracklist.map((track) => {
     let formattedDuration =
       track.duration === "" ? " Unknown duration" : track.duration;
@@ -23,46 +16,81 @@ export function Modal(details, imageCover) {
     const trackListLimit = formattedTrackList.length;
     formattedTrackList.splice(14, trackListLimit);
     formattedTrackList.push(
-      `<a href='${details.uri}' target="_blank">Click here to watch the entire list at Discogs.com</a>`
+      `<a href='${props.uri}' target="_blank">Click here to watch the entire list at Discogs.com</a>`
     );
   }
 
-  //YOUTUBE VIDEOS FORMAT
+  return formattedTrackList;
+}
+
+function videoFormatter(props) {
   let formattedVideos;
-  if (details.videos != null) {
-    const videos = details.videos.map((video) => video);
+
+  if (props != null) {
+    const videos = props.map((video) => video);
     formattedVideos = videos.map((video) => {
       return `<li><a href="${video.uri}" target="_blank"> "${video.title}"</a></li>`;
     });
   }
 
+  return formattedVideos;
+}
+
+function listFormatter(props, specific) {
+  let list;
+  let listString;
+  switch (specific) {
+    case "name":
+      list = props.map((element) => element.name);
+      listString = list.join(", ");
+      return listString;
+    case "genre":
+      list = props.map((element) => element);
+      listString = list.join(", ");
+      return listString;
+    case "style":
+      if (props != null) {
+        list = props.map((style) => style);
+        listString = list.join(", ");
+        return listString;
+      } else {
+        list = "Not defined";
+        return list;
+      }
+    default:
+      undefined;
+  }
+}
+
+export function Modal(details, imageCover) {
+  const backdrop = document.createElement("div");
+  const modal = document.createElement("div");
+  backdrop.classList.add("backdrop");
+  modal.classList.add("modal");
+  modal.classList.add("flip-in-hor-bottom");
+
+  //TRACKLIST FORMAT
+  let formattedTrackList = trackListFormatter(details.tracklist);
+
+  //YOUTUBE VIDEOS FORMAT
+  let formattedVideos = videoFormatter(details.videos);
+
   //ARTISTS FORMAT
-  let artist = details.artists.map((artist) => artist.name);
-  let artitsString = artist.join(", ");
+  let artistString = listFormatter(details.artists, "name");
 
   //GENRE FORMAT
-  let genre = details.genres.map((genre) => genre);
-  let genreString = genre.join(", ");
+  let genreString = listFormatter(details.genres, "genre");
 
   //STYLES FORMAT
-  let styles;
-  let stylesString;
-  if (details.styles != null) {
-    styles = details.styles.map((style) => style);
-    stylesString = styles.join(", ");
-  } else {
-    styles = "Not defined";
-  }
+  let stylesString = listFormatter(details.styles, "style");
 
   modal.innerHTML = `
   <div class="modal-body">
-    <h1 class="details-artist">${artitsString} - ${details.title}</h1>
+    <h1 class="details-artist">${artistString} - ${details.title}</h1>
     <img class="details-cover" src="${imageCover}"/>
     <div class="details-container">
     <p class="details-container__genre">Genre: ${genreString}</p>
-    <p class="details-container__styles">Styles: ${
-      stylesString === undefined ? styles : stylesString
-    }</p>
+    <p class="details-container__styles">Styles: ${stylesString}</p>
     <p class="details-container__years">${
       details.year === 0 ? "Unknown year" : details.year
     }</>
