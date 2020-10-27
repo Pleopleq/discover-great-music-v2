@@ -7,7 +7,7 @@ export function Album(props) {
   element.classList = "releases-album";
   const defaultImage = discogsImage;
   const yearFormatted = props.year === undefined ? "Unknown year" : props.year;
-  const imageFormatted = props.thumb.length == 0 ? defaultImage : props.thumb;
+  const imageFormatted = props.thumb.length === 0 ? defaultImage : props.thumb;
 
   element.innerHTML = `
   <h2 class="releases-album__title">${JSON.stringify(
