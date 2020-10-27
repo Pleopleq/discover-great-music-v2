@@ -55,6 +55,7 @@ export function Modal(details, imageCover) {
   }
 
   modal.innerHTML = `
+  <div class="modal-body">
     <h1 class="details-artist">${artitsString} - ${details.title}</h1>
     <img class="details-cover" src="${imageCover}"/>
     <div class="details-container">
@@ -73,6 +74,7 @@ export function Modal(details, imageCover) {
     <ul class="details-videos">
     ${formattedVideos === undefined ? "" : formattedVideos.join(" ")}
     </ul>
+  </div>
   `;
 
   backdrop.appendChild(modal);
