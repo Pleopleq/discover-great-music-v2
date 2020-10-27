@@ -1,66 +1,4 @@
-function closeModal(backdrop) {
-  if (backdrop) {
-    backdrop.remove();
-  }
-}
-
-function trackListFormatter(props) {
-  const tracklist = props.map((track) => track);
-  const formattedTrackList = tracklist.map((track) => {
-    let formattedDuration =
-      track.duration === "" ? " Unknown duration" : track.duration;
-    return `<li>${track.title} - ${formattedDuration}</li>`;
-  });
-
-  if (formattedTrackList.length > 14) {
-    const trackListLimit = formattedTrackList.length;
-    formattedTrackList.splice(14, trackListLimit);
-    formattedTrackList.push(
-      `<a href='${props.uri}' target="_blank">Click here to watch the entire list at Discogs.com</a>`
-    );
-  }
-
-  return formattedTrackList;
-}
-
-function videoFormatter(props) {
-  let formattedVideos;
-
-  if (props != null) {
-    const videos = props.map((video) => video);
-    formattedVideos = videos.map((video) => {
-      return `<li><a href="${video.uri}" target="_blank"> "${video.title}"</a></li>`;
-    });
-  }
-
-  return formattedVideos;
-}
-
-function listFormatter(props, specific) {
-  let list;
-  let listString;
-  switch (specific) {
-    case "name":
-      list = props.map((element) => element.name);
-      listString = list.join(", ");
-      return listString;
-    case "genre":
-      list = props.map((element) => element);
-      listString = list.join(", ");
-      return listString;
-    case "style":
-      if (props != null) {
-        list = props.map((style) => style);
-        listString = list.join(", ");
-        return listString;
-      } else {
-        list = "Not defined";
-        return list;
-      }
-    default:
-      undefined;
-  }
-}
+import utils from "./utils";
 
 export function Modal(details, imageCover) {
   const backdrop = document.createElement("div");
@@ -70,19 +8,19 @@ export function Modal(details, imageCover) {
   modal.classList.add("flip-in-hor-bottom");
 
   //TRACKLIST FORMAT
-  let formattedTrackList = trackListFormatter(details.tracklist);
+  let formattedTrackList = utils.trackListFormatter(details.tracklist);
 
   //YOUTUBE VIDEOS FORMAT
-  let formattedVideos = videoFormatter(details.videos);
+  let formattedVideos = utils.videoFormatter(details.videos);
 
   //ARTISTS FORMAT
-  let artistString = listFormatter(details.artists, "name");
+  let artistString = utils.listFormatter(details.artists, "name");
 
   //GENRE FORMAT
-  let genreString = listFormatter(details.genres, "genre");
+  let genreString = utils.listFormatter(details.genres, "genre");
 
   //STYLES FORMAT
-  let stylesString = listFormatter(details.styles, "style");
+  let stylesString = utils.listFormatter(details.styles, "style");
 
   modal.innerHTML = `
   <div class="modal-body">
@@ -112,7 +50,7 @@ export function Modal(details, imageCover) {
     const clickedElement = modal.contains(event.target);
     if (!clickedElement) {
       setTimeout(() => {
-        closeModal(backdrop);
+        utils.closeModal(backdrop);
       }, 400);
       modal.classList.add("slide-out-bck-center");
     }
