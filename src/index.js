@@ -18,8 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (releases.message === "Artist not found.") {
       releases = await GetReleases();
-      /* const alert = Notification("Please, try again!", "alert");
-      return inputContainer.parentNode.insertBefore(alert, releasesContainer); */
     }
 
     ShowReleases(releases);
