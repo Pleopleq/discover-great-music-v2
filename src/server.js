@@ -3,7 +3,7 @@ const path = require("path");
 const app = express();
 const cors = require("cors");
 const dirPath = path.join(__dirname, "../build");
-
+console.log(dirPath);
 app.use(cors());
 app.use(express.static(dirPath));
 

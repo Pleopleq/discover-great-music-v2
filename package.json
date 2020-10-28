@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js --open",
+    "server": "node ./src/server.js",
     "build": "webpack --config webpack.prod.js"
   },
   "keywords": [],
