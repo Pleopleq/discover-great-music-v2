@@ -1,7 +1,6 @@
 import "./main.css";
 import { GetReleases } from "./GetReleases";
 import { ShowReleases } from "./ShowReleases";
-import { Notification } from "./Notification";
 
 document.addEventListener("DOMContentLoaded", function () {
   const releasesButton = document.querySelector(".input-container__getcontent");
