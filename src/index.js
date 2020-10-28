@@ -10,16 +10,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   releasesButton.addEventListener("click", async function () {
     const alertRemove = releasesContainer.previousSibling;
+    let releases;
 
     if (alertRemove.className === "alert bounce-top") {
       inputContainer.nextElementSibling.remove();
     }
-
-    let releases = await GetReleases();
+    releases = await GetReleases();
 
     if (releases.message === "Artist not found.") {
-      const alert = Notification("Please, try again!", "alert");
-      return inputContainer.parentNode.insertBefore(alert, releasesContainer);
+      releases = await GetReleases();
+      /* const alert = Notification("Please, try again!", "alert");
+      return inputContainer.parentNode.insertBefore(alert, releasesContainer); */
     }
 
     ShowReleases(releases);
